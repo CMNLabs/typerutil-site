@@ -23,7 +23,7 @@ Pushing to `main` builds and deploys the site (`.github/workflows/deploy.yml`).
 | `src/pages/` | One file per page: `index.astro`, `changelog.astro`, `404.astro` |
 | `src/layouts/Layout.astro` | Shared `<head>`, header and footer |
 | `src/content/changelog/` | One Markdown file per release, with `version` and `date` front matter |
-| `src/consts.ts` | Download and bug report links |
+| `src/consts.ts` | Bug report links |
 | `src/styles/global.css` | Tailwind setup and brand colours |
 | `public/` | Files served as-is (icons) |
 
