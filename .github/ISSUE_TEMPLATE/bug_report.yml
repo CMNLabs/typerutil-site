@@ -1,0 +1,53 @@
+name: Bug report
+description: Something in Typer Util isn't working right.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to report this. Please don't paste anything sensitive, like passwords you were typing.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the palette with ⇧⌘K
+        2. …
+    validations:
+      required: true
+  - type: input
+    id: target-app
+    attributes:
+      label: App you were typing into
+      placeholder: e.g. Safari on example.com, Microsoft Remote Desktop, Terminal
+  - type: input
+    id: app-version
+    attributes:
+      label: Typer Util version
+      placeholder: e.g. 0.1.0-beta.3
+    validations:
+      required: true
+  - type: input
+    id: macos-version
+    attributes:
+      label: macOS version
+      placeholder: e.g. macOS 27.0
+    validations:
+      required: true
+  - type: input
+    id: keyboard-layout
+    attributes:
+      label: Keyboard layout
+      description: Helpful if the wrong characters were typed.
+      placeholder: e.g. British, U.S., German
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Screenshots, screen recordings or anything else that might help.

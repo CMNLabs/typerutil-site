@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Kbd from '../components/Kbd.astro';
+import { BUG_REPORT_URL, DOWNLOAD_URL } from '../consts';
+
+const demoText = 'Tr0ub4dor&3-horse';
+
+const steps = [
+  { keys: ['⇧', '⌘', 'K'], title: 'Open the palette', body: 'From anywhere, with the hotkey or the menubar icon.' },
+  { keys: ['⌘', 'V'], title: 'Drop in your text', body: 'Paste it into Typer Util, where pasting still works.' },
+  { keys: ['⌘', '⏎'], title: 'Press Ready', body: 'Click into the target field while the countdown runs, and Typer Util types it for you.' },
+];
+
+const features = [
+  {
+    title: 'Works where paste doesn’t',
+    body: 'Password confirmations, bank forms, remote desktops and VMs: anything that blocks paste or mangles pasted input gets real keystrokes instead.',
+  },
+  {
+    title: 'Your pace',
+    body: 'Slow, Normal or Fast with ⌘1–⌘3, or an exact delay between keystrokes for fussy fields.',
+  },
+  {
+    title: 'Safe with new lines and tabs',
+    body: 'Return and Tab can submit forms or jump fields. Type them as spaces instead with a single checkbox.',
+  },
+  {
+    title: 'Any keyboard layout',
+    body: 'Characters that need Option on your layout, like # on British keyboards or €, can be typed with Option the way a real keyboard would.',
+  },
+  {
+    title: 'Right from the Services menu',
+    body: 'Select text in any app and choose “Type with Typer Util” from the right-click menu. Give it a shortcut if you like.',
+  },
+  {
+    title: 'Scriptable',
+    body: 'Drive it from a URL scheme, AppleScript or the bundled typerutil command-line tool.',
+  },
+];
+
+const scripting = [
+  { label: 'Command line', code: 'pbpaste | typerutil --speed fast --ready' },
+  { label: 'AppleScript', code: 'tell application "Typer Util"\n    type text "Hello world" speed "fast" countdown 5 with ready\nend tell' },
+  { label: 'URL scheme', code: 'open "typerutil://type?text=Hello%20world&speed=fast&ready=1"' },
+];
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 -top-40 -z-10 flex justify-center blur-3xl">
+      <div class="aspect-[2/1] w-[60rem] bg-gradient-to-tr from-brand-400 to-brand-700 opacity-25 dark:opacity-30" style="clip-path: ellipse(50% 40% at 50% 50%)"></div>
+    </div>
+
+    <div class="mx-auto grid max-w-5xl items-center gap-12 px-4 pt-12 pb-20 sm:px-6 md:grid-cols-[1.1fr_1fr] md:pt-20">
+      <div>
+        <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-medium text-brand-700 dark:text-brand-300">
+          A menubar app for macOS
+        </p>
+        <h1 class="text-4xl font-bold tracking-tight text-balance text-zinc-900 sm:text-5xl dark:text-white">
+          Type it for me.
+        </h1>
+        <p class="mt-5 text-lg text-pretty text-zinc-600 dark:text-zinc-400">
+          Typer Util types text into any app, one keystroke at a time, for forms that block paste or mangle
+          what you paste into them.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href={DOWNLOAD_URL} class="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-3 font-medium text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.62 2.48A2 2 0 0 0 4.56 21h14.88a2 2 0 0 0 1.94-1.52L22 17"/></svg>
+            Download for Mac
+          </a>
+          <span class="text-sm text-zinc-500">macOS 13 or later</span>
+        </div>
+      </div>
+
+      <!-- Palette mock-up -->
+      <div class="mx-auto w-full max-w-sm rounded-2xl border border-zinc-200 bg-white/80 p-4 shadow-2xl shadow-brand-700/20 backdrop-blur dark:border-zinc-700/70 dark:bg-zinc-900/80" aria-hidden="true">
+        <div class="mb-3 flex items-center justify-between">
+          <div class="flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-white">
+            <img src="/favicon.svg" alt="" class="size-5" /> Typer Util
+          </div>
+          <div class="text-xs text-zinc-400">⇧⌘K</div>
+        </div>
+        <div class="flex h-24 rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-sm text-zinc-800 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200">
+          <span class="animate-typing inline-block overflow-hidden whitespace-nowrap" style={`width: ${demoText.length}ch; animation: typing 2.4s steps(${demoText.length}) 0.6s backwards`}>{demoText}</span>
+          <span class="ml-px inline-block h-5 w-0.5 bg-brand-500" style="animation: caret 1s steps(1) infinite"></span>
+        </div>
+        <div class="mt-3 flex items-center justify-between gap-3">
+          <div class="flex rounded-md bg-zinc-100 p-0.5 text-xs dark:bg-zinc-800">
+            <span class="px-2.5 py-1 text-zinc-500">Slow</span>
+            <span class="rounded bg-white px-2.5 py-1 font-medium text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white">Normal</span>
+            <span class="px-2.5 py-1 text-zinc-500">Fast</span>
+          </div>
+          <span class="rounded-md bg-brand-500 px-3 py-1.5 text-xs font-medium text-white">Ready ⌘⏎</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="border-y border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
+    <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">How it works</h2>
+      <ol class="mt-8 grid gap-8 md:grid-cols-3">
+        {steps.map((step, i) => (
+          <li>
+            <div class="flex items-center gap-3">
+              <span class="flex size-7 items-center justify-center rounded-full bg-brand-500 text-sm font-semibold text-white">{i + 1}</span>
+              <span class="flex gap-1">{step.keys.map((key) => <Kbd>{key}</Kbd>)}</span>
+            </div>
+            <h3 class="mt-4 font-semibold text-zinc-900 dark:text-white">{step.title}</h3>
+            <p class="mt-1 text-zinc-600 dark:text-zinc-400">{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+    <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Small app, careful typing</h2>
+    <div class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+      {features.map((feature) => (
+        <div>
+          <h3 class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-white">
+            <span class="size-1.5 rounded-full bg-brand-500"></span>
+            {feature.title}
+          </h3>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">{feature.body}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Scripting -->
+  <section class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
+    <div class="rounded-2xl bg-zinc-900 p-6 text-zinc-100 sm:p-10 dark:bg-zinc-900 dark:ring-1 dark:ring-zinc-800">
+      <h2 class="text-2xl font-bold tracking-tight text-white">Automate it</h2>
+      <p class="mt-2 max-w-2xl text-zinc-400">
+        Open the palette prefilled, or skip straight to the countdown, from scripts, shortcuts and the terminal.
+      </p>
+      <div class="mt-8 grid gap-6">
+        {scripting.map((item) => (
+          <div class="min-w-0">
+            <div class="mb-2 text-xs font-medium tracking-wide text-brand-300 uppercase">{item.label}</div>
+            <pre class="overflow-x-auto rounded-lg bg-black/40 p-4 font-mono text-[13px] leading-relaxed text-zinc-200"><code>{item.code}</code></pre>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Permissions / support -->
+  <section class="mx-auto grid max-w-5xl gap-10 px-4 pb-24 sm:px-6 md:grid-cols-2">
+    <div>
+      <h2 class="text-lg font-semibold text-zinc-900 dark:text-white">The one permission it needs</h2>
+      <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+        To type into other apps, Typer Util needs to be allowed in System Settings → Privacy &amp; Security →
+        <strong class="font-medium text-zinc-800 dark:text-zinc-200">Device Control and Data Access</strong>{' '}
+        (called Accessibility before macOS 27). It asks on first launch.
+      </p>
+    </div>
+    <div>
+      <h2 class="text-lg font-semibold text-zinc-900 dark:text-white">Found a bug?</h2>
+      <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+        Let us know on GitHub. Include your macOS version and the app you were typing into.
+      </p>
+      <a href={BUG_REPORT_URL} class="mt-4 inline-flex items-center gap-1 font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-400">
+        Report a bug <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Layout>

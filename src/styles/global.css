@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Sampled from the app icon's gradient. */
+  --color-brand-300: #c9a3ff;
+  --color-brand-400: #b67dff;
+  --color-brand-500: #8250e7;
+  --color-brand-600: #6a3bd0;
+  --color-brand-700: #5129ac;
+  --color-cream: #fff7ef;
+}
+
+/* Blinking caret for the hero's typing demo. */
+@keyframes caret {
+  50% { opacity: 0; }
+}
+
+/* Reveals the demo text one character at a time; the width is set in ch on the element. */
+@keyframes typing {
+  from { width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-typing { animation: none !important; }
+}
+
+/* Markdown in changelog entries. */
+.prose-changelog {
+  & > * + * { margin-top: 0.75rem; }
+  & ul { list-style: disc; padding-left: 1.25rem; }
+  & ol { list-style: decimal; padding-left: 1.25rem; }
+  & li + li { margin-top: 0.25rem; }
+  & a { color: var(--color-brand-600); text-decoration: underline; }
+  & code { font-family: var(--font-mono); font-size: 0.875em; }
+  & h3 { font-weight: 600; margin-top: 1.25rem; }
+}
