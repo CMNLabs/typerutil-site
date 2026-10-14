@@ -22,7 +22,7 @@ Pushing to `main` builds and deploys the site (`.github/workflows/deploy.yml`).
 | --- | --- |
 | `src/pages/` | One file per page: `index.astro`, `changelog.astro`, `404.astro` |
 | `src/layouts/Layout.astro` | Shared `<head>`, header and footer |
-| `src/content/changelog/` | One Markdown file per release, with `version` and `date` front matter |
+| `src/content/changelog/` | One Markdown file per release, with `version` and `date` front matter. Written by the app repo's Publish workflow |
 | `src/consts.ts` | Bug report links |
 | `src/styles/global.css` | Tailwind setup and brand colours |
 | `public/` | Files served as-is (icons) |
@@ -30,7 +30,9 @@ Pushing to `main` builds and deploys the site (`.github/workflows/deploy.yml`).
 
 ## Adding a release to the changelog
 
-Add `src/content/changelog/<version>.md`:
+The app repo's Publish workflow writes `src/content/changelog/<version>.md` for each published release, from
+the app's `CHANGELOG.md` and the release notes. Fix wording there rather than here: hand edits are
+overwritten if the release is published again. An entry looks like:
 
 ```md
 ---

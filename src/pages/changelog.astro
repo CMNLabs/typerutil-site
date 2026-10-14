@@ -2,7 +2,13 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
-const releases = (await getCollection('changelog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+// Newest first. Several releases can share a date, so ties go by version, compared numerically so
+// beta.10 comes after beta.9.
+const releases = (await getCollection('changelog')).sort(
+  (a, b) =>
+    b.data.date.valueOf() - a.data.date.valueOf() ||
+    b.data.version.localeCompare(a.data.version, undefined, { numeric: true }),
+);
 const formatDate = (date: Date) =>
   date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
