@@ -26,6 +26,7 @@ Pushing to `main` builds and deploys the site (`.github/workflows/deploy.yml`).
 | `src/consts.ts` | Bug report links |
 | `src/styles/global.css` | Tailwind setup and brand colours |
 | `public/` | Files served as-is (icons) |
+| `public/appcast.xml` | Sparkle update feed, written by the app repo's Publish workflow. Don't edit it by hand |
 
 ## Adding a release to the changelog
 
