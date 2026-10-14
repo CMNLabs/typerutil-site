@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>Typer Util</title>
+    <link>https://www.typerutil.app/</link>
+    <item>
+      <title>Typer Util 0.1.0-beta.5</title>
+      <pubDate>Wed, 14 Oct 2026 19:33:13 GMT</pubDate>
+      <sparkle:version>5</sparkle:version>
+      <sparkle:shortVersionString>0.1.0-beta.5</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <description sparkle:format="markdown">Signed and notarized.</description>
+      <enclosure url="https://github.com/CMNLabs/typerutil-site/releases/download/v0.1.0-beta.5/Typer-Util-0.1.0-beta.5.zip" length="2351764" type="application/octet-stream" sparkle:edSignature="8I4aZhgdVMhaC6V546R+zUXzTynaCVr0bBLGKfNrrOvYW3dln3xk10b9kiKQuvL4UURe4jP0GtblY9ocPfNaAg==" />
+    </item>
+  </channel>
+</rss>
