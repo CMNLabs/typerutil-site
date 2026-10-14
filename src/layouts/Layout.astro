@@ -5,11 +5,14 @@ import { BUG_REPORT_URL } from '../consts';
 interface Props {
   title?: string;
   description?: string;
+  /** Keeps the page out of search results, for pages only reached from elsewhere (like checkout). */
+  noindex?: boolean;
 }
 
 const {
   title,
   description = 'A macOS menubar utility that types text for you, for forms that block paste or mangle pasted input.',
+  noindex = false,
 } = Astro.props;
 const fullTitle = title ? `${title} · Typer Util` : 'Typer Util · Type text where paste won’t work';
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -23,6 +26,7 @@ const ogImage = new URL('/icon-256.png', Astro.site);
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="color-scheme" content="light dark" />
