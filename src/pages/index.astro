@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Kbd from '../components/Kbd.astro';
-import { BUG_REPORT_URL } from '../consts';
+import { REPORT_BUG_PAGE } from '../consts';
 
 const demoText = 'Tr0ub4dor&3-horse';
 
@@ -161,7 +161,7 @@ const scripting = [
       <p class="mt-2 text-zinc-600 dark:text-zinc-400">
         Let us know on GitHub. Include your macOS version and the app you were typing into.
       </p>
-      <a href={BUG_REPORT_URL} class="mt-4 inline-flex items-center gap-1 font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-400">
+      <a href={REPORT_BUG_PAGE} class="mt-4 inline-flex items-center gap-1 font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-400">
         Report a bug <span aria-hidden="true">→</span>
       </a>
     </div>

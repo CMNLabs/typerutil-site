@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BUG_REPORT_URL } from '../consts';
+
+// The app's About pane links here, so keep the URL. Reports go to the bug report issue form in this
+// site's public repo (.github/ISSUE_TEMPLATE/bug_report.yml), which asks for the same details as below.
+const details = [
+  { label: 'Typer Util version', where: 'Preferences → About' },
+  { label: 'macOS version', where: 'Apple menu → About This Mac' },
+  { label: 'The app you were typing into', where: 'and the website, if it was a browser' },
+  { label: 'Your keyboard layout', where: 'System Settings → Keyboard → Text Input' },
+];
+---
+
+<Layout title="Report a bug" description="Tell us about something in Typer Util that isn’t working right.">
+  <div class="mx-auto max-w-xl px-4 py-20 sm:px-6 sm:py-24">
+    <h1 class="text-4xl font-bold tracking-tight text-balance text-zinc-900 dark:text-white">Report a bug</h1>
+    <p class="mt-4 text-lg text-pretty text-zinc-600 dark:text-zinc-400">
+      Something not typing right? Tell us what happened and we’ll look into it.
+    </p>
+
+    <div class="mt-10 rounded-2xl border border-zinc-200 bg-zinc-50 p-6 dark:border-zinc-800 dark:bg-zinc-900/60">
+      <h2 class="text-sm font-semibold text-zinc-900 dark:text-white">Have these handy</h2>
+      <dl class="mt-4 space-y-3 text-sm">
+        {details.map((detail) => (
+          <div>
+            <dt class="font-medium text-zinc-800 dark:text-zinc-200">{detail.label}</dt>
+            <dd class="text-zinc-500">{detail.where}</dd>
+          </div>
+        ))}
+      </dl>
+      <p class="mt-5 text-sm text-zinc-600 dark:text-zinc-400">
+        The keyboard layout matters because Typer Util types each character through it. If the wrong characters
+        appeared, it’s often the reason.
+      </p>
+    </div>
+
+    <a href={BUG_REPORT_URL} class="mt-8 inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-3 font-medium text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600">
+      Open the bug report form
+      <span aria-hidden="true">→</span>
+    </a>
+    <p class="mt-4 text-sm text-zinc-500">
+      Reports are filed as public issues on GitHub, which needs a free account. Please don’t include anything
+      sensitive, like passwords you were typing.
+    </p>
+  </div>
+</Layout>
