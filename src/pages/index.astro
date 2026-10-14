@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Kbd from '../components/Kbd.astro';
-import { REPORT_BUG_PAGE } from '../consts';
+import { BUY_URL, DOWNLOAD_URL, REPORT_BUG_PAGE } from '../consts';
 
 const demoText = 'Tr0ub4dor&3-horse';
 
@@ -38,6 +38,15 @@ const features = [
   },
 ];
 
+const licenseTerms = [
+  { title: '7-day free trial', body: 'Download it and use everything for a week before you decide.' },
+  { title: 'Up to 5 Macs', body: 'One license activates Typer Util on up to 5 Macs.' },
+  {
+    title: 'Move it any time',
+    body: 'Deactivate a Mac in Preferences → License to free up its activation for another one.',
+  },
+];
+
 const scripting = [
   { label: 'Command line', code: 'pbpaste | typerutil --speed fast --ready' },
   { label: 'AppleScript', code: 'tell application "Typer Util"\n    type text "Hello world" speed "fast" countdown 5 with ready\nend tell' },
@@ -65,7 +74,11 @@ const scripting = [
           what you paste into them.
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
-          <span class="text-sm text-zinc-500">macOS 13 or later</span>
+          <a href={DOWNLOAD_URL} class="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-3 font-medium text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="M12 15V3m0 12-4-4m4 4 4-4M2 17l.62 2.48A2 2 0 0 0 4.56 21h14.88a2 2 0 0 0 1.94-1.52L22 17"/></svg>
+            Download for Mac
+          </a>
+          <span class="text-sm text-zinc-500">Free for 7 days · macOS 13 or later</span>
         </div>
       </div>
 
@@ -142,6 +155,31 @@ const scripting = [
             <pre class="overflow-x-auto rounded-lg bg-black/40 p-4 font-mono text-[13px] leading-relaxed text-zinc-200"><code>{item.code}</code></pre>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
+    <div class="rounded-2xl border border-brand-500/30 bg-brand-500/5 p-6 sm:p-10">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Try it free, then get a license</h2>
+      <p class="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-400">
+        Everything works for 7 days, no license key needed. After that, a license keeps it typing.
+      </p>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-3">
+        {licenseTerms.map((term) => (
+          <li>
+            <h3 class="flex items-center gap-2 font-semibold text-zinc-900 dark:text-white">
+              <span class="size-1.5 rounded-full bg-brand-500"></span>
+              {term.title}
+            </h3>
+            <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{term.body}</p>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href={BUY_URL} class="rounded-lg bg-brand-500 px-5 py-3 font-medium text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600">Buy a license</a>
+        <a href={DOWNLOAD_URL} class="rounded-lg px-5 py-3 font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-400">Download the free trial</a>
       </div>
     </div>
   </section>
