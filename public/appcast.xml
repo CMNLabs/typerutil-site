@@ -4,6 +4,16 @@
     <title>Typer Util</title>
     <link>https://www.typerutil.app/</link>
     <item>
+      <title>Typer Util 0.1.0-beta.6</title>
+      <pubDate>Wed, 14 Oct 2026 19:38:41 GMT</pubDate>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>0.1.0-beta.6</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <sparkle:channel>beta</sparkle:channel>
+      <description sparkle:format="markdown">About now shows the version and has Check for Updates.</description>
+      <enclosure url="https://github.com/CMNLabs/typerutil-site/releases/download/v0.1.0-beta.6/Typer-Util-0.1.0-beta.6.zip" length="2359003" type="application/octet-stream" sparkle:edSignature="3A6yTc0QlBl4akI/Zzl/+Ua51VxJtXAVv6yvZhSRVK6xcg5IHp5oNRAEdHrOKJdW7BoIgRHeBw4hmtrBCHokDw==" />
+    </item>
+    <item>
       <title>Typer Util 0.1.0-beta.5</title>
       <pubDate>Wed, 14 Oct 2026 19:33:13 GMT</pubDate>
       <sparkle:version>5</sparkle:version>
