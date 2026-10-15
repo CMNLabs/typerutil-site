@@ -6,9 +6,9 @@ import { BUY_URL, DOWNLOAD_URL, REPORT_BUG_PAGE } from '../consts';
 const demoText = 'Tr0ub4dor&3-horse';
 
 const steps = [
-  { keys: ['⇧', '⌘', 'K'], title: 'Open the palette', body: 'From anywhere, with the hotkey or the menubar icon.' },
-  { keys: ['⌘', 'V'], title: 'Drop in your text', body: 'Paste it into Typer Util, where pasting still works.' },
-  { keys: ['⌘', '⏎'], title: 'Press Ready', body: 'Click into the target field while the countdown runs, and Typer Util types it for you.' },
+  { keys: ['⇧', '⌘', 'K'], title: 'Open the palette', body: 'From anywhere, with the hotkey, menubar icon, or services menu.' },
+  { keys: ['⌘', 'V'], title: 'Drop in your text', body: 'Paste it into the Typer Util palette.' },
+  { keys: ['⌘', '⏎'], title: 'Press Ready', body: 'Click into the target field while the countdown runs, then Typer Util types it for you.' },
 ];
 
 const features = [
@@ -17,16 +17,16 @@ const features = [
     body: 'Password confirmations, bank forms, remote desktops and VMs: anything that blocks paste or mangles pasted input gets real keystrokes instead.',
   },
   {
-    title: 'Your pace',
-    body: 'Slow, Normal or Fast with ⌘1–⌘3, or an exact delay between keystrokes for fussy fields.',
+    title: 'Custom speed',
+    body: 'Send keystrokes at any speed to work around fussy fields.',
   },
   {
     title: 'Safe with new lines and tabs',
-    body: 'Return and Tab can submit forms or jump fields. Type them as spaces instead with a single checkbox.',
+    body: 'Return and Tab can submit forms or jump fields. You control how you send control characters.',
   },
   {
     title: 'Any keyboard layout',
-    body: 'Characters that need Option on your layout, like # on British keyboards or €, can be typed with Option the way a real keyboard would.',
+    body: 'Characters that need Option on your layout can be typed with Option the way a real keyboard would.',
   },
   {
     title: 'Right from the Services menu',
@@ -40,11 +40,8 @@ const features = [
 
 const licenseTerms = [
   { title: '7-day free trial', body: 'Download it and use everything for a week before you decide.' },
+  { title: 'No subscriptions', body: 'Buy it once and it\'s yours forever.' },
   { title: 'Up to 5 Macs', body: 'One license activates Typer Util on up to 5 Macs.' },
-  {
-    title: 'Move it any time',
-    body: 'Deactivate a Mac in Preferences → License to free up its activation for another one.',
-  },
 ];
 
 const scripting = [
@@ -67,11 +64,11 @@ const scripting = [
           A menubar app for macOS
         </p>
         <h1 class="text-4xl font-bold tracking-tight text-balance text-zinc-900 sm:text-5xl dark:text-white">
-          Type it for me.
+          Simulate real typing
         </h1>
         <p class="mt-5 text-lg text-pretty text-zinc-600 dark:text-zinc-400">
           Typer Util types text into any app, one keystroke at a time, for forms that block paste or mangle
-          what you paste into them.
+          what you paste into them (e.g. secure website forms, PDFs, virtual machines).
         </p>
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a href={DOWNLOAD_URL} class="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-5 py-3 font-medium text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600">
@@ -127,7 +124,7 @@ const scripting = [
 
   <!-- Features -->
   <section class="mx-auto max-w-5xl px-4 py-20 sm:px-6">
-    <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Small app, careful typing</h2>
+    <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Small and simple</h2>
     <div class="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
       {features.map((feature) => (
         <div>
@@ -147,6 +144,7 @@ const scripting = [
       <h2 class="text-2xl font-bold tracking-tight text-white">Automate it</h2>
       <p class="mt-2 max-w-2xl text-zinc-400">
         Open the palette prefilled, or skip straight to the countdown, from scripts, shortcuts and the terminal.
+        Perfect companion to Alfred, Raycast, Keyboard Maestro, or AI agents like Claude or ChatGPT.
       </p>
       <div class="mt-8 grid gap-6">
         {scripting.map((item) => (
@@ -162,10 +160,7 @@ const scripting = [
   <!-- Pricing -->
   <section id="pricing" class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
     <div class="rounded-2xl border border-brand-500/30 bg-brand-500/5 p-6 sm:p-10">
-      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Try it free, then get a license</h2>
-      <p class="mt-2 max-w-2xl text-zinc-600 dark:text-zinc-400">
-        Everything works for 7 days, no license key needed. After that, a license keeps it typing.
-      </p>
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Buy it for $2.49</h2>
       <ul class="mt-6 grid gap-4 sm:grid-cols-3">
         {licenseTerms.map((term) => (
           <li>
@@ -197,7 +192,7 @@ const scripting = [
     <div>
       <h2 class="text-lg font-semibold text-zinc-900 dark:text-white">Found a bug?</h2>
       <p class="mt-2 text-zinc-600 dark:text-zinc-400">
-        Let us know on GitHub. Include your macOS version and the app you were typing into.
+        Include your macOS version and the app you were typing into.
       </p>
       <a href={REPORT_BUG_PAGE} class="mt-4 inline-flex items-center gap-1 font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-400">
         Report a bug <span aria-hidden="true">→</span>
