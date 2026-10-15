@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Kbd from '../components/Kbd.astro';
-import { BUY_URL, DOWNLOAD_URL, REPORT_BUG_PAGE } from '../consts';
+import { BUY_URL, DOWNLOAD_URL, PRICES, REPORT_BUG_PAGE } from '../consts';
 
 const demoText = 'Tr0ub4dor&3-horse';
 
@@ -160,7 +160,7 @@ const scripting = [
   <!-- Pricing -->
   <section id="pricing" class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
     <div class="rounded-2xl border border-brand-500/30 bg-brand-500/5 p-6 sm:p-10">
-      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Buy it for $2.49</h2>
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">Buy it for <span data-price="{price}">{PRICES.other}</span></h2>
       <ul class="mt-6 grid gap-4 sm:grid-cols-3">
         {licenseTerms.map((term) => (
           <li>

@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { DOWNLOAD_URL, REPORT_BUG_PAGE } from '../consts';
+import { BUY_URL, DOWNLOAD_URL, EU_COUNTRIES, PRICES, REPORT_BUG_PAGE } from '../consts';
 
 interface Props {
   title?: string;
@@ -46,6 +46,7 @@ const ogImage = new URL('/icon-256.png', Astro.site);
       <nav class="flex items-center gap-1 text-sm sm:gap-2">
         <a href="/changelog" class="rounded-md px-2.5 py-1.5 text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white">Changelog</a>
         <a href={REPORT_BUG_PAGE} class="hidden rounded-md px-2.5 py-1.5 text-zinc-600 hover:text-zinc-900 sm:inline dark:text-zinc-400 dark:hover:text-white">Report a bug</a>
+        <a href={BUY_URL} data-price="Buy ({price})" class="rounded-md px-3 py-1.5 font-medium text-brand-600 ring-1 ring-brand-500/40 ring-inset hover:bg-brand-500/10 dark:text-brand-300">Buy</a>
         <a href={DOWNLOAD_URL} class="rounded-md bg-brand-500 px-3 py-1.5 font-medium text-white hover:bg-brand-600">Download</a>
       </nav>
     </header>
@@ -63,5 +64,39 @@ const ogImage = new URL('/icon-256.png', Astro.site);
         </div>
       </div>
     </footer>
+    <!--
+      Fills in the local price wherever an element has data-price, a template like "Buy ({price})". Runs
+      inline at the end of the body, so a country remembered from an earlier visit is applied before the
+      first paint. Then it always asks Cloudflare's /cdn-cgi/trace (answered by Cloudflare's proxy, so not
+      on the dev server) where the visitor is now.
+    -->
+    <script is:inline define:vars={{ prices: PRICES, euCountries: EU_COUNTRIES }}>
+      (() => {
+        const storageKey = 'buy-country';
+        const show = (country) => {
+          const price = country === 'GB' ? prices.uk : euCountries.includes(country) ? prices.eu : prices.other;
+          for (const el of document.querySelectorAll('[data-price]')) {
+            el.textContent = el.dataset.price.replace('{price}', price);
+          }
+        };
+
+        try {
+          const cached = localStorage.getItem(storageKey);
+          if (cached) show(cached);
+        } catch {}
+
+        fetch('/cdn-cgi/trace')
+          .then((response) => (response.ok ? response.text() : Promise.reject()))
+          .then((text) => {
+            const country = text.match(/^loc=([A-Z]{2})$/m)?.[1];
+            if (!country) return;
+            show(country);
+            try {
+              localStorage.setItem(storageKey, country);
+            } catch {}
+          })
+          .catch(() => {});
+      })();
+    </script>
   </body>
 </html>
