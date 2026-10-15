@@ -13,20 +13,6 @@
   --color-cream: #fff7ef;
 }
 
-/* Blinking caret for the hero's typing demo. */
-@keyframes caret {
-  50% { opacity: 0; }
-}
-
-/* Reveals the demo text one character at a time; the width is set in ch on the element. */
-@keyframes typing {
-  from { width: 0; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-typing { animation: none !important; }
-}
-
 /* Markdown in changelog entries. */
 .prose-changelog {
   & > * + * { margin-top: 0.75rem; }

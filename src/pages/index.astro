@@ -1,9 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Kbd from '../components/Kbd.astro';
 import { BUY_URL, DOWNLOAD_URL, PRICES, REPORT_BUG_PAGE } from '../consts';
-
-const demoText = 'Tr0ub4dor&3-horse';
+import palette from '../assets/palette.png';
 
 const steps = [
   { keys: ['⇧', '⌘', 'K'], title: 'Open the palette', body: 'From anywhere, with the hotkey, menubar icon, or services menu.' },
@@ -79,29 +79,33 @@ const scripting = [
         </div>
       </div>
 
-      <!-- Palette mock-up -->
-      <div class="mx-auto w-full max-w-sm rounded-2xl border border-zinc-200 bg-white/80 p-4 shadow-2xl shadow-brand-700/20 backdrop-blur dark:border-zinc-700/70 dark:bg-zinc-900/80" aria-hidden="true">
-        <div class="mb-3 flex items-center justify-between">
-          <div class="flex items-center gap-2 text-sm font-medium text-zinc-900 dark:text-white">
-            <img src="/favicon.svg" alt="" class="size-5" /> Typer Util
-          </div>
-          <div class="text-xs text-zinc-400">⇧⌘K</div>
-        </div>
-        <div class="flex h-24 rounded-lg border border-zinc-200 bg-zinc-50 p-3 font-mono text-sm text-zinc-800 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-200">
-          <span class="animate-typing inline-block overflow-hidden whitespace-nowrap" style={`width: ${demoText.length}ch; animation: typing 2.4s steps(${demoText.length}) 0.6s backwards`}>{demoText}</span>
-          <span class="ml-px inline-block h-5 w-0.5 bg-brand-500" style="animation: caret 1s steps(1) infinite"></span>
-        </div>
-        <div class="mt-3 flex items-center justify-between gap-3">
-          <div class="flex rounded-md bg-zinc-100 p-0.5 text-xs dark:bg-zinc-800">
-            <span class="px-2.5 py-1 text-zinc-500">Slow</span>
-            <span class="rounded bg-white px-2.5 py-1 font-medium text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white">Normal</span>
-            <span class="px-2.5 py-1 text-zinc-500">Fast</span>
-          </div>
-          <span class="rounded-md bg-brand-500 px-3 py-1.5 text-xs font-medium text-white">Ready ⌘⏎</span>
-        </div>
+      <div class="flex flex-col items-center">
+        <!-- Screenshot of the palette, cropped to its rounded corners on a transparent background. -->
+        <Image
+          src={palette}
+          alt="The Typer Util palette, with a password ready to type at Normal speed after a 3-second countdown."
+          widths={[491, 982]}
+          sizes="(min-width: 768px) 491px, 100vw"
+          loading="eager"
+          class="w-full max-w-[491px] drop-shadow-2xl"
+        />
+        <button type="button" data-open-video class="mt-6 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium text-brand-600 hover:bg-brand-500/10 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-200">
+          <svg viewBox="0 0 24 24" fill="currentColor" class="size-4" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l11.2-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14Z"/></svg>
+          Play demo video
+        </button>
       </div>
     </div>
   </section>
+
+  <!-- Demo video overlay. The video only loads when it's opened. Clicking outside it or pressing Escape closes it. -->
+  <dialog id="demo-video" aria-label="Typer Util demo video" class="m-auto w-[min(64rem,calc(100vw-2rem))] max-w-none overflow-visible bg-transparent p-0 backdrop:bg-black/80 backdrop:backdrop-blur-sm">
+    <div class="relative">
+      <button type="button" data-close-video aria-label="Close video" class="absolute -top-11 right-0 rounded-full p-2 text-white/80 hover:bg-white/10 hover:text-white">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="size-5" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <video src="/demo-video.mp4" controls playsinline preload="none" width="1534" height="1080" class="h-auto max-h-[85vh] w-full rounded-xl bg-black shadow-2xl"></video>
+    </div>
+  </dialog>
 
   <!-- How it works -->
   <section class="border-y border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900/40">
@@ -138,25 +142,6 @@ const scripting = [
     </div>
   </section>
 
-  <!-- Scripting -->
-  <section class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
-    <div class="rounded-2xl bg-zinc-900 p-6 text-zinc-100 sm:p-10 dark:bg-zinc-900 dark:ring-1 dark:ring-zinc-800">
-      <h2 class="text-2xl font-bold tracking-tight text-white">Automate it</h2>
-      <p class="mt-2 max-w-2xl text-zinc-400">
-        Open the palette prefilled, or skip straight to the countdown, from scripts, shortcuts and the terminal.
-        Perfect companion to Alfred, Raycast, Keyboard Maestro, or AI agents like Claude or ChatGPT.
-      </p>
-      <div class="mt-8 grid gap-6">
-        {scripting.map((item) => (
-          <div class="min-w-0">
-            <div class="mb-2 text-xs font-medium tracking-wide text-brand-300 uppercase">{item.label}</div>
-            <pre class="overflow-x-auto rounded-lg bg-black/40 p-4 font-mono text-[13px] leading-relaxed text-zinc-200"><code>{item.code}</code></pre>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Pricing -->
   <section id="pricing" class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
     <div class="rounded-2xl border border-brand-500/30 bg-brand-500/5 p-6 sm:p-10">
@@ -175,6 +160,25 @@ const scripting = [
       <div class="mt-8 flex flex-wrap items-center gap-3">
         <a href={BUY_URL} class="rounded-lg bg-brand-500 px-5 py-3 font-medium text-white shadow-lg shadow-brand-500/25 hover:bg-brand-600">Buy a license</a>
         <a href={DOWNLOAD_URL} class="rounded-lg px-5 py-3 font-medium text-brand-600 hover:text-brand-700 dark:text-brand-300 dark:hover:text-brand-400">Download the free trial</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripting -->
+  <section class="mx-auto max-w-5xl px-4 pb-20 sm:px-6">
+    <div class="rounded-2xl bg-zinc-900 p-6 text-zinc-100 sm:p-10 dark:bg-zinc-900 dark:ring-1 dark:ring-zinc-800">
+      <h2 class="text-2xl font-bold tracking-tight text-white">Automate it</h2>
+      <p class="mt-2 max-w-2xl text-zinc-400">
+        Open the palette prefilled, or skip straight to the countdown, from scripts, shortcuts and the terminal.
+        Perfect companion to Alfred, Raycast, Keyboard Maestro, or AI agents like Claude or ChatGPT.
+      </p>
+      <div class="mt-8 grid gap-6">
+        {scripting.map((item) => (
+          <div class="min-w-0">
+            <div class="mb-2 text-xs font-medium tracking-wide text-brand-300 uppercase">{item.label}</div>
+            <pre class="overflow-x-auto rounded-lg bg-black/40 p-4 font-mono text-[13px] leading-relaxed text-zinc-200"><code>{item.code}</code></pre>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -200,3 +204,19 @@ const scripting = [
     </div>
   </section>
 </Layout>
+
+<script>
+  const dialog = document.getElementById('demo-video') as HTMLDialogElement;
+  const video = dialog.querySelector('video')!;
+
+  document.querySelector('[data-open-video]')!.addEventListener('click', () => {
+    dialog.showModal();
+    video.play().catch(() => {}); // Autoplay can be refused; the controls are there to start it.
+  });
+  dialog.querySelector('[data-close-video]')!.addEventListener('click', () => dialog.close());
+  // A click on the backdrop lands on the dialog itself, outside its content.
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+  dialog.addEventListener('close', () => video.pause());
+</script>
