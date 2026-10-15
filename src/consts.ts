@@ -2,10 +2,11 @@
 
 export const REPO_URL = 'https://github.com/CMNLabs/typerutil-site';
 
-// The app's repo is private, so its publish workflow copies each release here.
-// While there are only betas this points at the list of releases, because releases/latest skips
-// prereleases. Switch it to `${REPO_URL}/releases/latest` after the first non-beta release.
-export const DOWNLOAD_URL = `${REPO_URL}/releases`;
+// The app's repo is private, so its publish workflow copies each release here. This downloads the zip
+// straight from the latest (non-prerelease) release, but the zip's name has the version in it: update
+// this after each release.
+export const APP_VERSION = '1.0.0';
+export const DOWNLOAD_URL = `${REPO_URL}/releases/latest/download/Typer-Util-${APP_VERSION}.zip`;
 
 // Polar checkout for a license; the same link as the app's Buy License button.
 export const BUY_URL = 'https://buy.polar.sh/polar_cl_EB3AyXrxE2XbohDXGodLxh2u356hpAD7C9Zuy1UjMiQ';
