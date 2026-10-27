@@ -4,6 +4,17 @@
     <title>Typer Util</title>
     <link>https://www.typerutil.app/</link>
     <item>
+      <title>Typer Util 1.0.1</title>
+      <pubDate>Tue, 27 Oct 2026 10:30:28 GMT</pubDate>
+      <sparkle:version>8</sparkle:version>
+      <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+      <description sparkle:format="markdown">- **One license, all your Macs.** Your license key now works on as many Macs as you like, with no
+  limit and nothing to deactivate when you switch to a new one.
+- Opening Preferences closes the typing window, so it no longer floats over Preferences.</description>
+      <enclosure url="https://github.com/CMNLabs/typerutil-site/releases/download/v1.0.1/Typer-Util-1.0.1.zip" length="2366077" type="application/octet-stream" sparkle:edSignature="CiAo9IO95gh7yUnsE5bkEudZA2iLZ2IDDE5PV3tyHhYF0akvVq++VdYV6uPZ4N9byzZHs/mtXuVmYuk1zQMvDA==" />
+    </item>
+    <item>
       <title>Typer Util 1.0.0</title>
       <pubDate>Thu, 15 Oct 2026 13:06:02 GMT</pubDate>
       <sparkle:version>7</sparkle:version>
